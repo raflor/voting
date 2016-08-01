@@ -1,0 +1,9 @@
+a.list-group-item(role='button', data-toggle='collapse', href='#'+poll.name, aria-expanded='false', aria-controls='collapseExample')
+    span.badge 
+        =poll.votes.yae
+    =poll.name
+div.collapse(id=poll.name)
+    .well
+        .btn-toolbar
+            button#yae.btn.btn-success.center(type='submit', value='yae') YAE
+            button.btn.btn-danger.center(type='submit', value='nae') NAY

@@ -6,6 +6,8 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
 
+var polls = require('./app/routes/poll_routes.js');
+
 var app = express();
 require('dotenv').load();
 require('./app/config/passport')(passport);
@@ -22,8 +24,11 @@ app.use(session({
 	saveUninitialized: true
 }));
 
+
 app.use(passport.initialize());
 app.use(passport.session());
+
+polls(app, passport);
 
 routes(app, passport);
 
