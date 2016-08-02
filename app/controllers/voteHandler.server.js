@@ -26,12 +26,25 @@ function voteHandler() {
         var value = req.body.value;
         var update = {$inc:{}};
         update.$inc["votes."+value] = 1;
-        vote.findOneAndUpdate({name:req.body.name}, update, {upsert:true,new : true}, function(err, result){
+        //console.log(update);
+        vote.findOneAndUpdate({name:req.body.name}, update, {upsert:true, new : true, strict:false}, function(err, result){
             if (err) {
                     throw err;
                 }
+            //console.log(result);
             res.json(result);
         });
+    };
+    
+    this.addPoll = function(req, res){
+        var poll = new vote.vote({name:req.body.name});
+        req.body.choices.forEach(function(item, index){
+            poll.votes.push({choice:item.choice,votes:1});
+        });
+        poll.save(function(err){
+            if(err) throw err;
+        });
+        //res = ?
     };
 }
 module.exports = voteHandler;

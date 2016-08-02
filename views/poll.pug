@@ -1,9 +1,12 @@
+mixin button(choice)
+    button.btn.btn-default.center(type='submit', value=choice.choice, id=choice.choice)
+        =choice.choice
+
 a.list-group-item(role='button', data-toggle='collapse', href='#'+poll.name, aria-expanded='false', aria-controls='collapseExample')
-    span.badge 
-        =poll.votes.yae
+    span.badge
     =poll.name
 div.collapse(id=poll.name)
     .well
         .btn-toolbar
-            button#yae.btn.btn-success.center(type='submit', value='yae') YAE
-            button.btn.btn-danger.center(type='submit', value='nae') NAY
+            each choice in poll.choices
+                +button(choice)

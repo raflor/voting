@@ -1,7 +1,7 @@
 'use strict';
 
 var path = process.cwd();
-var VoteHandler = require(path + '/app/controllers/voteHandler.js');
+var VoteHandler = require(path + '/app/controllers/voteHandler.server.js');
 var bodyParser = require('body-parser');
 
 module.exports = function(app, passport) {
