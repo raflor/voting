@@ -1,25 +1,26 @@
 extends layout
 
 block content
-  #list.container-fluid
-    .list-group
-      a.list-group-item(role='button', data-toggle='collapse', href='#collapseExample', aria-expanded='false', aria-controls='collapseExample')
-        span.badge 0
-        | Cras justo odio
-      #collapseExample.collapse
-        .well
-          button#yae.btn.btn-success(type='submit', value='yae') YAE
-          button.btn.btn-danger(type='submit', value='nae') NAY
-          
-      a.list-group-item(href='#')
-        span.badge
-        |  Dapibus ac facilisis in
-      a.list-group-item(href='#') Morbi leo risus
-      a.list-group-item(href='#') Porta ac consectetur ac
-      a.list-group-item(href='#') Vestibulum at eros
-      for poll in polls
-        include poll
-      
-  script(src='https://code.jquery.com/jquery-2.2.4.min.js')
-  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+  #list.flex-container
+    .flex-item
+      .list-group
+        a.list-group-item(role='button', data-toggle='collapse', href='#collapseExample', aria-expanded='false', aria-controls='collapseExample')
+          span.badge 0
+          | Cras justo odio
+        #collapseExample.collapse
+          .well
+            button#yae.btn.btn-success(type='submit', value='yae') YAE
+            button.btn.btn-danger(type='submit', value='nae') NAY
+            
+        a.list-group-item(href='#')
+          span.badge
+          |  Dapibus ac facilisis in
+        a.list-group-item(href='#') Morbi leo risus
+        a.list-group-item(href='#') Porta ac consectetur ac
+        a.list-group-item(href='#') Vestibulum at eros
+        for poll in polls
+          include poll
+    .flex-item
+      canvas#myChart(width="400", height="400")
+block script
   script(type='text/javascript', src='controllers/voteController.client.js')

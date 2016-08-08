@@ -2,10 +2,10 @@ mixin button(choice)
     button.btn.btn-default.center(type='submit', value=choice.choice, id=choice.choice)
         =choice.choice
 
-a.list-group-item(role='button', data-toggle='collapse', href='#'+poll.name, aria-expanded='false', aria-controls='collapseExample')
+a.list-group-item(role='button', data-toggle='collapse', href='#'+poll._id, aria-expanded='false', aria-controls='collapseExample')
     span.badge
     =poll.name
-div.collapse(id=poll.name)
+div.collapse(id=poll._id)
     .well
         .btn-toolbar
             each choice in poll.choices

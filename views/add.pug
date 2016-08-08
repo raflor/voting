@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  .container
+    h3#heading Add New Poll
+    form
+      .form-group
+        label(for='name') Name
+        input#exampleInputEmail1.form-control(type='text', name='name', placeholder='Name')
+      .form-group
+        label(for='choice') Choices
+        input#choice.form-control(type='text', name='choice0', placeholder='Choice')
+      .form-group
+        button#add.btn.btn-default.btn-block(type='button')
+          span.glyphicon.glyphicon-plus(aria-lsbrl='add row')
+      button#submit.btn.btn-default(type='submit') Submit
+block script
+  script(type='text/javascript', src='controllers/addVoteController.client.js')

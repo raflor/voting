@@ -15,4 +15,5 @@ var vote = new Schema({
 	choices:[childSchema]
 });
 exports.db = db;
+//exports model
 module.exports = db.model('Vote', vote);

@@ -21,8 +21,15 @@ module.exports = function(app, passport) {
                 });
             });
         });
-
-
+    
+    app.route('/addvote')
+        .get(function(req, res) {
+            res.render('add');
+        });
+    
+    app.route('/addvote/api')
+        .post(voteHandler.addPoll);
+        
     app.route('/vote/api')
         .post(voteHandler.addVotes);
 };
