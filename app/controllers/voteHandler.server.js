@@ -11,7 +11,7 @@ function voteHandler() {
             if (err) {
                     throw err;
                 }
-            cursor.toArray(function(err, result) {
+            cursor.sort({"_id":-1}).toArray(function(err, result) {
                 if (err) {
                     throw err;
                 }
@@ -31,7 +31,7 @@ function voteHandler() {
             if (err) {
                     throw err;
                 }
-            console.log(result);
+            //console.log(result);
             res.json(result);
         });
     };

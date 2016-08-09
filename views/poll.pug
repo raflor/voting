@@ -1,5 +1,5 @@
 mixin button(choice)
-    button.btn.btn-default.center(type='submit', value=choice.choice, id=choice.choice)
+    button.btn.btn-default.center(type='submit', value=choice.choice, id=choice.choice, data-votes=choice.votes)
         =choice.choice
 
 a.list-group-item(role='button', data-toggle='collapse', href='#'+poll._id, aria-expanded='false', aria-controls='collapseExample')
