@@ -3,10 +3,10 @@ extends layout
 block content
   #list.flex-container
     .flex-item
-      .list-group
+      .list-group(role="tablist", id="accordion")
         for poll in polls
-          include poll
+          include poll2
     .flex-item
       canvas#myChart(width="400", height="400")
 block script
-  script(type='text/javascript', src='controllers/voteController.client.js')
+  script(type='text/javascript', src='controllers/votesController.client.js')

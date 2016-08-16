@@ -7,8 +7,9 @@ $(document).ready(function() {
 	$('form').submit(function(event) {
 		var req = $('form').serializeArray();
 		var name = req.shift();
-		$.post("https://voting-app-raflor.c9users.io/addvote/api",{name:name.value, value:req},function(data, status){
+		$.post("https://voting-app-raflor.c9users.io/addvote/api/:id",{name:name.value, value:req},function(data, status){
 		});
 		event.preventDefault();
+		window.location.replace('https://voting-app-raflor.c9users.io/vote');
 	});
 });

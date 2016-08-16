@@ -12,6 +12,7 @@ var childSchema = new Schema({
 
 var vote = new Schema({
 	name: String,
+	user_id: String,
 	choices:[childSchema]
 });
 exports.db = db;

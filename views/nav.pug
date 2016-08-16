@@ -13,6 +13,9 @@ body
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             ul.nav.navbar-nav
               li
+                a(href='https://voting-app-raflor.c9users.io/myvotes')
+                  |myvotes
+              li
                 a(href='https://voting-app-raflor.c9users.io/addvote')
                   span.glyphicon.glyphicon-plus(aria-lsbrl='add vote')
             ul.nav.navbar-nav.navbar-right
@@ -22,7 +25,7 @@ body
                     input.form-control(type='text', placeholder='Search')
                   button.btn.btn-default(type='submit', aria-label='Search')
                     span.glyphicon.glyphicon-search
-              button.btn.btn-primary.navbar-btn(type='submit') Login
-              li
+              a.btn.btn-default.navbar-btn(href='/auth/google', role='button')
+                |Sign In
           // /.navbar-collapse
         // /.container-fluid

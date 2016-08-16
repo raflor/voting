@@ -11,6 +11,7 @@ var polls = require('./app/routes/poll_routes.js');
 var app = express();
 require('dotenv').load();
 require('./app/config/passport')(passport);
+require('./app/config/passport_google.js')(passport);
 
 mongoose.connect(process.env.MONGO_URI);
 

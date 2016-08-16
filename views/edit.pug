@@ -1,0 +1,32 @@
+mixin button(choice)
+    li.list-group-item
+        .form-group
+            .row
+                .input-group
+                    input.form-control(type='text', placeholder=choice.choice)
+                    span.input-group-btn
+                        .btn.btn-default(type="button")
+                            span.glyphicon.glyphicon-trash(aria-lsbrl='delete')
+
+.panel.panel-default
+    #headingOne.panel-heading(role='tab')
+        h4.panel-title
+            a(role='button', data-toggle='collapse', data-parent='#accordion', href='#'+poll._id, aria-expanded='true', aria-controls='collapseOne')
+                =poll.name
+    .panel-collapse.collapse(id=poll._id, role='tabpanel', aria-labelledby='headingOne')
+        form
+            ul.list-group
+                each choice in poll.choices
+                    +button(choice)
+                
+                li.list-group-item
+                    .form-group
+                        .row
+                            .input-group
+                                input.form-control(type='text')
+                                span.input-group-btn
+                                        .btn.btn-default(type="button")
+                                            span.glyphicon.glyphicon-plus(aria-lsbrl='add row')
+                li.list-group-item    
+                    button#add.btn.btn-default.btn-block(type='button')
+                        span.glyphicon.glyphicon-plus(aria-lsbrl='add row')
