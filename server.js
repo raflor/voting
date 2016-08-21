@@ -5,7 +5,6 @@ var routes = require('./app/routes/index.js');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
-
 var polls = require('./app/routes/poll_routes.js');
 
 var app = express();
