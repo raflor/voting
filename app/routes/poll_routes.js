@@ -3,7 +3,6 @@
 var path = process.cwd();
 var VoteHandler = require(path + '/app/controllers/voteHandler.server.js');
 var bodyParser = require('body-parser');
-var test = require('../../tests.js');
 
 module.exports = function(app, passport) {
     test.edit;
