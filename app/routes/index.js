@@ -46,7 +46,7 @@ module.exports = function (app, passport) {
 
 	app.route('/auth/github/callback')
 		.get(passport.authenticate('github', {
-			successRedirect: '/',
+			successRedirect: '/vote',
 			failureRedirect: '/login'
 		}));
 

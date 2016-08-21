@@ -3,16 +3,20 @@
 var path = process.cwd();
 var VoteHandler = require(path + '/app/controllers/voteHandler.server.js');
 var bodyParser = require('body-parser');
+var test = require('../../tests.js');
 
 module.exports = function(app, passport) {
-    function isLoggedIn (req, res, next) {
-		if (req.isAuthenticated()) {
-			return next();
-		} else {
-			res.redirect('/login');
-		}
-	}
-	
+    test.edit;
+
+    function isLoggedIn(req, res, next) {
+        if (req.isAuthenticated()) {
+            return next();
+        }
+        else {
+            res.redirect('/login');
+        }
+    }
+
     var voteHandler = new VoteHandler();
 
     app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
@@ -21,35 +25,56 @@ module.exports = function(app, passport) {
 
     app.set('view engine', 'pug');
 
+    app.route('/vote/:id')
+        .get(function(req, res) {
+            voteHandler.findVote(req,function(result){
+                res.render('vote', {
+                    poll: result,
+                    auth:req.isAuthenticated()
+                });
+            });
+        });
+
     app.route('/vote')
         .get(function(req, res) {
             voteHandler.getVotes(function(results) {
                 res.render('home', {
-                    polls: results
+                    polls: results,
+                    auth:req.isAuthenticated()
                 });
             });
         });
-        
+
     app.route('/myvotes')
         .get(isLoggedIn, function(req, res) {
-            voteHandler.findVotes(req.user,function(results) {
-                res.render('vote', {
-                    polls: results
+            voteHandler.findVotes(req.user, function(results) {
+                res.render('myvotes', {
+                    polls: results,
+                    auth:req.isAuthenticated()
                 });
             });
         });
-        
+
     app.route('/addvote')
-        .get(function(req, res) {
-            res.render('add');
+        .get(isLoggedIn, function(req, res) {
+            
+            res.render('add',{
+                auth:req.isAuthenticated()
+            });
         });
 
     app.route('/addvote/api/:id')
         .post(voteHandler.addPoll);
 
+    app.route('/editpoll/api/:id')
+        .post(voteHandler.editPoll);
+
+    app.route('/deletepoll/api/:id')
+        .post(voteHandler.deletePoll);
+
     app.route('/vote/api')
         .post(voteHandler.addVotes);
-        
+
     // GET /auth/google
     //   Use passport.authenticate() as route middleware to authenticate the
     //   request.  The first step in Google authentication will involve

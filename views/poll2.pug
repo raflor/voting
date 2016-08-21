@@ -1,5 +1,5 @@
 mixin button(choice)
-    button.btn.btn-default.center(type='submit', value=choice.choice, id=choice.choice, data-votes=choice.votes)
+    button.btn.btn-default.center(type='submit', value=choice.choice, id=choice._id, data-votes=choice.votes)
         =choice.choice
 
 .panel.panel-default
@@ -7,6 +7,8 @@ mixin button(choice)
       h4.panel-title
         a(role='button', data-toggle='collapse', data-parent='#accordion', href='#'+poll._id, aria-expanded='true', aria-controls='collapseOne')
            =poll.name
+        a.twitter-share-button(href="https://twitter.com/intent/tweet")
+            |Tweet
     .panel-collapse.collapse(id=poll._id, role='tabpanel', aria-labelledby='headingOne')
       .panel-body
         .btn-toolbar

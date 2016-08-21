@@ -6,7 +6,7 @@ $(document).ready(function(){
 	});	
 	$('#list').on('click', 'button', function() {
 		var that = this;
-		var value = $(this).attr("value");
+		var value = $(this).attr("id");
 		var parent = $(this).parents(".collapse");
 		$.post("https://voting-app-raflor.c9users.io/vote/api/", {
 			id: parent.attr("id"),

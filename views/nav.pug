@@ -25,7 +25,11 @@ body
                     input.form-control(type='text', placeholder='Search')
                   button.btn.btn-default(type='submit', aria-label='Search')
                     span.glyphicon.glyphicon-search
-              a.btn.btn-default.navbar-btn(href='/auth/google', role='button')
-                |Sign In
+              if(auth)
+                a.btn.btn-default.navbar-btn(href='/auth/github', role='button')
+                  |Log Out
+              else
+                a.btn.btn-default.navbar-btn(href='/logout', role='button')
+                  |Sign In
           // /.navbar-collapse
         // /.container-fluid
