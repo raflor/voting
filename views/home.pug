@@ -1,11 +1,15 @@
 extends layout
 
 block content
-  #list.flex-container
+  .flex-container
     .flex-item
-      .list-group(role="tablist", id="accordion")
-        for poll in polls
-          include poll2
+      div(style="width:70%;overflow:hidden;margin-left:15%;")
+        button.btn.btn-default.btn-sm(type="button", style="float:right;margin-bottom:5px;")
+          |Filter
+      #list
+        .list-group(role="tablist", id="accordion")
+          for poll in polls
+            include poll2
     .flex-item
       canvas#myChart(width="400", height="400")
 block script
