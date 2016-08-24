@@ -3,12 +3,22 @@ mixin button(choice)
         =choice.choice
 
 .panel.panel-default
-    #headingOne.panel-heading(role='tab')
-      h4.panel-title
-        a(role='button', data-toggle='collapse', data-parent='#accordion', href='#'+poll._id, aria-expanded='true', aria-controls='collapseOne')
-           =poll.name
-        a.twitter-share-button(href="https://twitter.com/intent/tweet")
-            |Tweet
+    #headingOne.panel-heading.clearfix(role='tab')
+        h4.panel-title
+            a(role='button', data-toggle='collapse', data-parent='#accordion', href='#'+poll._id, aria-expanded='true', aria-controls='collapseOne')
+                =poll.name
+                
+            ul.share-buttons.pull-right
+                li
+                    a(href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fvoting-app-raflor.c9users.io%2Fvote%2F"+poll._id "&t=", target="_blank" title="Share on Facebook")
+                        i.fa.fa-facebook-square(aria-hidden="true")
+                            span.sr-only
+                                |Share on Facebook
+                li
+                    a(href="https://twitter.com/intent/tweet?source=https%3A%2F%2Fvoting-app-raflor.c9users.io%2Fvote&text=vote:%20https%3A%2F%2Fvoting-app-raflor.c9users.io%2Fvote%2F"+poll._id target="_blank" title="Tweet")
+                        i.fa.fa-twitter-square(aria-hidden="true")
+                            span.sr-only
+                                |Tweet
     .panel-collapse.collapse(id=poll._id, role='tabpanel', aria-labelledby='headingOne')
       .panel-body
         .btn-toolbar

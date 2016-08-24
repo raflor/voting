@@ -5,7 +5,6 @@ var VoteHandler = require(path + '/app/controllers/voteHandler.server.js');
 var bodyParser = require('body-parser');
 
 module.exports = function(app, passport) {
-    test.edit;
 
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated()) {
