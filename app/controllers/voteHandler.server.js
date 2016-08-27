@@ -8,9 +8,9 @@ var votes = db.collection('votes');
 var ObjectId = require('mongoose').Types.ObjectId;
 var mongoose = require('mongoose');
 function voteHandler() {
-
-    this.getVotes = function(callback) {
-        votes.find({}, function(err, cursor) {
+    
+    this.getVotes = function(param,callback) {
+        votes.find(param, function(err, cursor) {
             if (err) {
                 throw err;
             }
@@ -25,16 +25,18 @@ function voteHandler() {
         });
 
     };
-    this.findVote = function(req, callback) {
-        vote.findById((req.params.id), function(err, doc) {
+    //for single Votes
+    this.findVote = function(req, res) {
+        vote.findById((req.body.id), function(err, doc) {
             if (err) {
                 throw err;
             }
-                callback(doc);
+            res.json(doc);
         });
 
     };
     
+    //
     this.findVotes = function(user, callback) {
         votes.find({
             "user_id": user.github.id

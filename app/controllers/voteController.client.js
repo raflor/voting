@@ -1,10 +1,11 @@
 $(document).ready(function() {
-	$(document).one('ready',function() {
+	$(document).one('ready', function() {
 		$('.panel .collapse:first').addClass('in');
 		draw.call($('.panel .collapse:first'));
-		
-	});	
+
+	});
 	
+	//voting
 	$('#list').on('click', 'button', function() {
 		var that = this;
 		var value = $(this).attr("value");
@@ -18,8 +19,36 @@ $(document).ready(function() {
 				$(this).attr('data-votes', data.choices[i].votes)
 			});
 		});
-		
+
 	});
+	
+	// filter button
+	$('#filter').click(function() {
+		if ($(this).hasClass('active')) {
+			$('.panel').show();
+			$(this).removeClass('active');
+		}
+		else {
+			$(this).addClass('active');
+			$.getJSON("vote/api/user_data", function(data) {
+				// Make sure the data contains the username as expected before using it
+				if (data.hasOwnProperty('user')) {
+					$('a[data-user!="' + data.user.github.id + '"]').each(function() {
+						//console.log($(this).attr('href'));
+						$(this).parents('.panel').hide();
+					});
+				}
+			});
+		}
+
+	});
+	
+	// update graph
+	$('.collapse').on('show.bs.collapse', function() {
+		draw.call(this);
+	});
+	
+	//draw graph
 	var myChart;
 	function draw(that) {
 		if (myChart) {

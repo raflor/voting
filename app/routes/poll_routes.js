@@ -25,39 +25,54 @@ module.exports = function(app, passport) {
 
     app.route('/vote/:id')
         .get(function(req, res) {
-            voteHandler.findVote(req,function(result){
+            voteHandler.findVote(req, function(result) {
                 res.render('vote', {
                     poll: result,
-                    auth:req.isAuthenticated()
+                    auth: req.isAuthenticated()
                 });
             });
         });
+        
+    app.get('/vote/api/user_data', function(req, res) {
+        if (req.user === undefined) {
+            // The user is not logged in
+            res.json({});
+        }
+        else {
+            res.json({
+                user: req.user
+            });
+        }
+    });
 
     app.route('/vote')
         .get(function(req, res) {
-            voteHandler.getVotes(function(results) {
+            var param = {};
+            voteHandler.getVotes(param, function(results) {
                 res.render('home', {
                     polls: results,
-                    auth:req.isAuthenticated()
+                    auth: req.isAuthenticated(),
+                    filter: false
                 });
             });
         });
 
     app.route('/myvotes')
         .get(isLoggedIn, function(req, res) {
-            voteHandler.findVotes(req.user, function(results) {
+            var param = {"user_id": req.user.github.id};
+            voteHandler.getVotes(param, function(results) {
                 res.render('myvotes', {
                     polls: results,
-                    auth:req.isAuthenticated()
+                    auth: req.isAuthenticated()
                 });
             });
         });
 
     app.route('/addvote')
         .get(isLoggedIn, function(req, res) {
-            
-            res.render('add',{
-                auth:req.isAuthenticated()
+
+            res.render('add', {
+                auth: req.isAuthenticated()
             });
         });
 

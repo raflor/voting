@@ -5,7 +5,7 @@ mixin button(choice)
 .panel.panel-default
     #headingOne.panel-heading.clearfix(role='tab')
         h4.panel-title
-            a(role='button', data-toggle='collapse', data-parent='#accordion', href='#'+poll._id, aria-expanded='true', aria-controls='collapseOne')
+            a(role='button', data-toggle='collapse', data-parent='#accordion', href='#'+poll._id, aria-expanded='true', aria-controls='collapseOne', data-user=poll.user_id)
                 =poll.name
                 
             ul.share-buttons.pull-right
