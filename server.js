@@ -14,7 +14,6 @@ require('./app/config/passport')(passport);
 require('./app/config/passport_google.js')(passport);
 
 mongoose.Promise = global.Promise;
-console.log(process.env.MONGO_URI)
 mongoose.connect(process.env.MONGO_URI);
 
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));

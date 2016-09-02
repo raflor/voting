@@ -1,7 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var db = mongoose.createConnection('mongodb://localhost:27017/votes');
+var db = mongoose.createConnection(process.env.MONGO_URI);
 var Schema = mongoose.Schema;
 
 var childSchema = new Schema({
