@@ -2,7 +2,7 @@
 
 var path = process.cwd();
 var VoteHandler = require(path + '/app/controllers/voteHandler.server.js');
-var bodyParser = require('body-parser');
+var session = require('express-session');
 
 module.exports = function(app, passport) {
 
@@ -11,18 +11,16 @@ module.exports = function(app, passport) {
             return next();
         }
         else {
+            req.session.returnTo = req.path; 
             res.redirect('/login');
         }
     }
 
     var voteHandler = new VoteHandler();
 
-    app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
-        extended: true
-    }));
-
     app.set('view engine', 'pug');
-
+    
+    // display single poll
     app.route('/vote/:id')
         .get(function(req, res) {
             voteHandler.findVote(req, function(result) {
@@ -33,18 +31,7 @@ module.exports = function(app, passport) {
             });
         });
         
-    app.get('/vote/api/user_data', function(req, res) {
-        if (req.user === undefined) {
-            // The user is not logged in
-            res.json({});
-        }
-        else {
-            res.json({
-                user: req.user
-            });
-        }
-    });
-
+    // display all votes
     app.route('/vote')
         .get(function(req, res) {
             var param = {};
@@ -55,10 +42,22 @@ module.exports = function(app, passport) {
                     filter: false
                 });
             });
+        })
+        .post(function(req, res){
+            var param = {name: req.body.value};
+            voteHandler.getVotes(param, function(results) {
+                res.render('home', {
+                    polls: results,
+                    auth: req.isAuthenticated(),
+                    filter: false
+                });
+            });
         });
-
+    
+    
     app.route('/myvotes')
         .get(isLoggedIn, function(req, res) {
+            //console.log(req.session);
             var param = {"user_id": req.user.github.id};
             voteHandler.getVotes(param, function(results) {
                 res.render('myvotes', {
@@ -76,13 +75,13 @@ module.exports = function(app, passport) {
             });
         });
 
-    app.route('/addvote/api/:id')
+    app.route('/addvote/api/')
         .post(voteHandler.addPoll);
 
-    app.route('/editpoll/api/:id')
+    app.route('/editpoll/api/')
         .post(voteHandler.editPoll);
 
-    app.route('/deletepoll/api/:id')
+    app.route('/deletepoll/api/')
         .post(voteHandler.deletePoll);
 
     app.route('/vote/api')

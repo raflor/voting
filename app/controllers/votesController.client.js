@@ -18,7 +18,6 @@ $(document).ready(function(){
 			});
 			draw.call($(that).parents('.collapse'));
 		});
-		
 	});
 
 	var myChart;

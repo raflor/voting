@@ -1,15 +1,14 @@
 mixin button(choice)
     li.list-group-item
         .form-group
-            .row
-                .input-group
-                    input.form-control(type='text', name=choice._id, value=choice.choice)
-                    span.input-group-btn
-                        .btn.btn-default.del(type="submit")
-                            span.glyphicon.glyphicon-trash(aria-lsbrl='delete')
+            .input-group
+                input.form-control(type='text', name=choice._id, value=choice.choice)
+                span.input-group-btn
+                    .btn.btn-default.del(type="button")
+                        span.glyphicon.glyphicon-trash(aria-lsbrl='delete')
 
 .panel.panel-default
-    #headingOne.panel-heading.clearfix(role='tab')
+    .panel-heading.clearfix(role='tab')
         h4.panel-title
             a(role='button', data-toggle='collapse', data-parent='#accordion', href='#'+poll._id, aria-expanded='true', aria-controls='collapseOne')
                 =poll.name
@@ -19,14 +18,22 @@ mixin button(choice)
     .panel-collapse.collapse(id=poll._id, role='tabpanel', aria-labelledby='headingOne')
         form
             ul.list-group
+                li.list-group-item
+                    .form-group
+                        .input-group
+                            span.input-group-addon
+                                |Name
+                            input.form-control(name='title',id='name', type='text', value=poll.name)
+                            span.input-group-btn
+                                        button.title.btn.btn-default(type="button")
+                                            span.glyphicon.glyphicon-ok(aria-lsbrl='submit')
                 each choice in poll.choices
                     +button(choice)
                 
                 li.list-group-item
                     .form-group
-                        .row
-                            .input-group
-                                input.form-control(name='choice0', type='text')
-                                span.input-group-btn
-                                        button#ok.btn.btn-default(type="submit")
-                                            span.glyphicon.glyphicon-ok(aria-lsbrl='submit')
+                        .input-group
+                            input.form-control(name='choice0', type='text')
+                            span.input-group-btn
+                                    button#ok.btn.btn-default(type="submit")
+                                        span.glyphicon.glyphicon-ok(aria-lsbrl='submit')

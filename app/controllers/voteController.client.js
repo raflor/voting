@@ -1,16 +1,16 @@
 $(document).ready(function() {
+	
 	$(document).one('ready', function() {
 		$('.panel .collapse:first').addClass('in');
 		draw.call($('.panel .collapse:first'));
-
 	});
 	
 	//voting
 	$('#list').on('click', 'button', function() {
 		var that = this;
-		var value = $(this).attr("value");
+		var value = $(this).attr("id");
 		var parent = $(this).parents(".collapse");
-		$.post("https://voting-app-raflor.c9users.io/vote/api/:id", {
+		$.post("https://voting-app-raflor.c9users.io/vote/api/", {
 			id: parent.attr("id"),
 			value: value
 		}, function(data, status) {
@@ -18,8 +18,8 @@ $(document).ready(function() {
 			$(that).siblings().addBack().each(function(i) {
 				$(this).attr('data-votes', data.choices[i].votes)
 			});
+			draw.call($(that).parents('.collapse'));
 		});
-
 	});
 	
 	// filter button
