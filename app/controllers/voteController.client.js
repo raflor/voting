@@ -10,7 +10,7 @@ $(document).ready(function() {
 		var that = this;
 		var value = $(this).attr("id");
 		var parent = $(this).parents(".collapse");
-		$.post("https://voting-app-raflor.c9users.io/vote/api/", {
+		$.post("https://immense-dawn-70417.herokuapp.com/vote/api/", {
 			id: parent.attr("id"),
 			value: value
 		}, function(data, status) {

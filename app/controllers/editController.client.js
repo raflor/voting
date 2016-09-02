@@ -12,7 +12,7 @@ $(document).ready(function() {
 		var id = form.parent().attr('id');
 		console.log(req);
 		var name = req.shift();
-		$.post("https://voting-app-raflor.c9users.io/editpoll/api", {
+		$.post("https://immense-dawn-70417.herokuapp.com/editpoll/api", {
 			id: id,
 			name: name,
 			value: req
@@ -30,7 +30,7 @@ $(document).ready(function() {
 		$(this).find('#ok').replaceWith('<div class="btn btn-default del" type="button"><span class="glyphicon glyphicon-trash" aria-lsbrl="delete"></span></div>');
 		var that = this;
 		i++;
-		$.post("https://voting-app-raflor.c9users.io/editpoll/api",{id:id, name:name, value:req},function(data, status){
+		$.post("https://immense-dawn-70417.herokuapp.com/editpoll/api",{id:id, name:name, value:req},function(data, status){
 			$(that).find('input[name^="choice"]').attr('name',data.choices[data.choices.length-1]._id)
 		});
 		return false;
@@ -41,7 +41,7 @@ $(document).ready(function() {
 		var req = $(this).parents('form').serializeArray();
 		var name = req.shift();
 		var id = $(this).parents('panel-collapse').attr('id');
-		$.post("https://voting-app-raflor.c9users.io/editpoll/api", {
+		$.post("https://immense-dawn-70417.herokuapp.com/editpoll/api", {
 			id: id,
 			name: name,
 			value: req
@@ -53,7 +53,7 @@ $(document).ready(function() {
 	$(document).on('click', '#delete_poll', function() {
 		var id = $(this).prev().attr('href').slice(1);
 		$(this).parents('.panel').first().remove();
-		$.post("https://voting-app-raflor.c9users.io/deletepoll/api", {
+		$.post("https://immense-dawn-70417.herokuapp.com/deletepoll/api", {
 			id: id
 		}, function(data, status) {
 			//window.location.reload();
@@ -64,7 +64,7 @@ $(document).ready(function() {
 		var req = $(this).serializeArray();
 		var name = req.shift();
 		var id = $(this).parent().attr('id');
-		$.post("https://voting-app-raflor.c9users.io/editpoll/api",{id:id, name:name, value:req},function(data, status){
+		$.post("https://immense-dawn-70417.herokuapp.com/editpoll/api",{id:id, name:name, value:req},function(data, status){
 		});
 		return false;
 	});*/
