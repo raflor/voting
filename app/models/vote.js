@@ -1,7 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var db = mongoose.createConnection(process.env.MONGO_URI);
+var db = mongoose.createConnection(process.env.MONGO_URI,{ storage: { smallFiles: true } });
 var Schema = mongoose.Schema;
 
 var childSchema = new Schema({
