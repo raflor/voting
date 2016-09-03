@@ -3,13 +3,14 @@ extends layout
 block content
   .flex-container
     .flex-item
-      div(style="width:80%;overflow:hidden;margin-left:10%;")
-        if(filter)
-          button#filter.btn.btn-default.btn-sm.active(type="button", style="float:right;margin-bottom:5px;")
-            |Filter
-        else
-          button#filter.btn.btn-default.btn-sm(type="button", style="float:right;margin-bottom:5px;",title="Show only your votes")
-            |Filter
+      if(auth)
+        div(style="width:80%;overflow:hidden;margin-left:10%;margin-bottom:-10px")
+          if(filter)
+            button#filter.btn.btn-default.btn-sm.active(type="button", style="float:right; margin-bottom:5px;")
+              |Filter
+          else
+            button#filter.btn.btn-default.btn-sm(type="button", style="float:right;margin-bottom:5px;",title="Show only your votes")
+              |Filter
       #list
         .list-group(role="tablist", id="accordion")
           for poll in polls

@@ -10,7 +10,7 @@ $(document).ready(function() {
 		var that = this;
 		var value = $(this).attr("id");
 		var parent = $(this).parents(".collapse");
-		$.post("https://immense-dawn-70417.herokuapp.com/vote/api/", {
+		$.post("/vote/api/", {
 			id: parent.attr("id"),
 			value: value
 		}, function(data, status) {
@@ -30,12 +30,12 @@ $(document).ready(function() {
 		}
 		else {
 			$(this).addClass('active');
-			$.getJSON("vote/api/user_data", function(data) {
+			$.getJSON("/vote/api/user_data", function(data) {
 				// Make sure the data contains the username as expected before using it
-				if (data.hasOwnProperty('user')) {
-					$('a[data-user!="' + data.github.id + '"]').each(function() {
-						//console.log($(this).attr('href'));
-						$(this).parents('.panel').hide();
+				if (data.hasOwnProperty('id')) {
+					$('a[data-user][data-user!="' + data.id + '"]').each(function() {
+						console.log($(this).attr('data-user'));
+						$(this).parents('.panel:first').hide();
 					});
 				}
 			});

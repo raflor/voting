@@ -7,8 +7,8 @@ $(document).ready(function() {
 	$('form').submit(function(event) {
 		var req = $('form').serializeArray();
 		var name = req.shift();
-		$.post("https://immense-dawn-70417.herokuapp.com/addvote/api",{name:name.value, value:req},function(data, status){
-			window.location.assign('https://immense-dawn-70417.herokuapp.com/vote');
+		$.post("/addvote/api",{name:name.value, value:req},function(data, status){
+			window.location.assign('/vote');
 		});
 		event.preventDefault();
 		

@@ -8,15 +8,15 @@ body
               span.icon-bar
               span.icon-bar
               span.icon-bar
-            a.navbar-brand(href='https://immense-dawn-70417.herokuapp.com/vote') Voting
+            a.navbar-brand(href='/vote') Voting
           // Collect the nav links, forms, and other content for toggling
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             ul.nav.navbar-nav
               li
-                a(href='https://immense-dawn-70417.herokuapp.com/myvotes',title="edit your votes")
+                a(href='/myvotes',title="edit your votes")
                   |myvotes
               li
-                a(href='https://immense-dawn-70417.herokuapp.com/addvote', title="add vote")
+                a(href='/addvote', title="add vote")
                   span.glyphicon.glyphicon-plus(aria-lsbrl='add vote')
             ul.nav.navbar-nav.navbar-right
               li
@@ -24,7 +24,16 @@ body
                 a.btn.btn-default.navbar-btn(href='/logout', role='button')
                   |Log Out
               else
-                a.btn.btn-default.navbar-btn(href='/auth/github', role='button')
-                  |Sign In
+                .btn-group
+                  button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                    |Sign In 
+                    span.caret
+                  ul.dropdown-menu
+                    li
+                      a(href='/auth/github', role='button')
+                        |Github
+                    li
+                      a(href='/auth/google', role='button')
+                        |Google
           // /.navbar-collapse
         // /.container-fluid

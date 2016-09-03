@@ -125,7 +125,7 @@ function voteHandler() {
     this.addPoll = function(req, res) {
         var poll = new vote({
             name: req.body.name,
-            user_id: req.user.github.id
+            user_id: "1"
         });
         req.body.value.forEach(function(item, index) {
             poll.choices.push({
@@ -149,7 +149,15 @@ function voteHandler() {
     };
     
     this.getUser = function(req, res) {
-        res.json(req.user)
+        if(req.user){
+            if(req.user.github){
+                res.json(req.user.github);
+            }
+            else{
+                res.json(req.user.google);
+            }
+        }
+        
     };
     //depreciated
     this.findVotes = function(user, callback) {
