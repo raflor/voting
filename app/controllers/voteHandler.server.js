@@ -60,8 +60,6 @@ function voteHandler() {
     };
 
     this.editPoll = function(req, res) {
-        console.log('req')
-        console.log(req.body.value)
         if(!req.body.value){
             res.status(400).end();
             return;
@@ -97,7 +95,6 @@ function voteHandler() {
                 }
 
             });
-            console.log(req.body.value)
             // add new entries
             req.body.value.forEach(function(item, index) {
                 if (item.value != '') {

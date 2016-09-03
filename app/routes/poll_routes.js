@@ -69,7 +69,6 @@ module.exports = function(app, passport) {
 
     app.route('/addvote')
         .get(isLoggedIn, function(req, res) {
-
             res.render('add', {
                 auth: req.isAuthenticated()
             });
