@@ -1,1 +1,0 @@
-mongodb: options: { storage: { smallFiles: true } }
