@@ -1,8 +1,10 @@
 'use strict';
 
 var vote = require('../models/vote.js');
+var user = require('../models/users.js');
 var db = vote.db;
 var votes = db.collection('votes');
+var users = user.db.collection('users');
 var ObjectId = require('mongoose').Types.ObjectId;
 var mongoose = require('mongoose');
 
@@ -23,9 +25,7 @@ function voteHandler() {
                 callback(result);
             });
         });
-
     };
-
 
     //search for single Vote
     this.findVote = function(req, callback) {
@@ -59,6 +59,7 @@ function voteHandler() {
         });
     };
 
+    //edit poll
     this.editPoll = function(req, res) {
         if(!req.body.value){
             res.status(400).end();
@@ -146,7 +147,10 @@ function voteHandler() {
             res.status(204).end();
         });
     };
-
+    
+    this.getUser = function(req, res) {
+        res.json(req.user)
+    };
     //depreciated
     this.findVotes = function(user, callback) {
         votes.find({
