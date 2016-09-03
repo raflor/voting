@@ -19,13 +19,13 @@ body
                 a(href='/addvote', title="add vote")
                   span.glyphicon.glyphicon-plus(aria-lsbrl='add vote')
             ul.nav.navbar-nav.navbar-right
-              li
               if(auth)
-                a.btn.btn-default.navbar-btn(href='/logout', role='button')
-                  |Log Out
+                li
+                  a.btn.btn-default.navbar-btn(href='/logout', role='button')
+                    |Log Out
               else
-                .btn-group
-                  button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                li.dropdown
+                  a.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
                     |Sign In 
                     span.caret
                   ul.dropdown-menu
