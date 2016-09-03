@@ -87,7 +87,7 @@ module.exports = function(app, passport) {
         .post(voteHandler.addVotes);
     
     app.route('/vote/api/user_data')
-        .post(voteHandler.getUser);
+        .get(voteHandler.getUser);
 
     // GET /auth/google
     //   Use passport.authenticate() as route middleware to authenticate the
