@@ -33,7 +33,7 @@ $(document).ready(function() {
 			$.getJSON("vote/api/user_data", function(data) {
 				// Make sure the data contains the username as expected before using it
 				if (data.hasOwnProperty('user')) {
-					$('a[data-user!="' + data.user.github.id + '"]').each(function() {
+					$('a[data-user!="' + data.github.id + '"]').each(function() {
 						//console.log($(this).attr('href'));
 						$(this).parents('.panel').hide();
 					});
