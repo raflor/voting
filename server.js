@@ -9,7 +9,7 @@ var polls = require('./app/routes/poll_routes.js');
 var bodyParser = require('body-parser');
 
 var app = express();
-require('dotenv').load();
+//require('dotenv').load();
 require('./app/config/passport')(passport);
 require('./app/config/passport_google.js')(passport);
 
