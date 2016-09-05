@@ -7,16 +7,17 @@ mixin button(choice)
 block content
   #list.flex-container
     .flex-item
-      .panel.panel-default
-        #headingOne.panel-heading(role='tab')
-          h4.panel-title
-            a(role='button')
-                =poll.name
-        .panel-collapse.collapse.in(id=poll._id, role='tabpanel', aria-labelledby='headingOne')
-          .panel-body
-            .btn-toolbar
-                each choice in poll.choices
-                  +button(choice)
+      .list-group
+        .panel.panel-default
+          #headingOne.panel-heading(role='tab')
+            h4.panel-title
+              a(role='button')
+                  =poll.name
+          .panel-collapse.collapse.in(id=poll._id, role='tabpanel', aria-labelledby='headingOne')
+            .panel-body
+              .btn-toolbar
+                  each choice in poll.choices
+                    +button(choice)
     .flex-item
       canvas#myChart(width="400", height="400")
       
