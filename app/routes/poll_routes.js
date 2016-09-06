@@ -109,6 +109,7 @@ module.exports = function(app, passport) {
             failureRedirect: '/login'
         }),
         function(req, res) {
-            res.redirect('/vote');
+            res.redirect(req.session.returnTo || '/vote');
+			delete req.session.returnTo;
         });
 };
