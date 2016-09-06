@@ -42,9 +42,14 @@ canvas {
     max-width: 70vh;
 	}
 	.flex-item{
-		width:90%;
-		margin-right:0px;
+		width:100%;
+		margin:0px;
 	}
+	#chart{
+		width:90%;
+		margin:auto;
+		margin-top:10px;
+	}	
 }
 
 
