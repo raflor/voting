@@ -19,7 +19,6 @@ body {
 }
 
 .flex-item {
-	min-height:420px;
 	width: 50%;
 	margin: 10px;
 	margin-bottom:-10px;
@@ -29,7 +28,25 @@ canvas {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	max-height: 90vh;
+    max-width: 90vh;
 }
+@media screen and (max-width: 768px) {
+	.flex-container{
+	-webkit-flex-flow: column;
+	-webkit-flex-direction: column-reverse;
+   flex-direction: column-reverse;
+	}
+	#myChart{
+		max-height: 70vh;
+    max-width: 70vh;
+	}
+	.flex-item{
+		width:100%;
+	}
+}
+
+
 ul.share-buttons{
   list-style: none;
   padding: 0;

@@ -89,7 +89,7 @@ $(document).ready(function() {
 			},
 			options: {
 				legend: false,
-				responsive: false
+				responsive: true
 			}
 		});
 	}
