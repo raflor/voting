@@ -25,13 +25,17 @@ $(document).ready(function() {
 		var req = $(this).serializeArray();
 		var name = req.shift();
 		var id = $(this).parent().attr('id');
-		$(this).find('#ok').parents('.list-group-item').first().after('<li class="list-group-item"><div class="form-group"><div class="input-group"><input class="form-control anonym" name="choice'+i+'" type="text" placeholder="choice"><span class="input-group-btn"><button class="btn btn-default" id="ok" type="submit"><span class="glyphicon glyphicon-ok" aria-lsbrl="submit"></span></button></span></input></div></div></li>');
+		$(this).find('#ok').parents('.list-group-item').first().after('<li class="list-group-item"><div class="form-group"><div class="input-group"><input class="form-control anonym" name="choice' + i + '" type="text" placeholder="choice"><span class="input-group-btn"><button class="btn btn-default" id="ok" type="submit"><span class="glyphicon glyphicon-ok" aria-lsbrl="submit"></span></button></span></input></div></div></li>');
 		$(this).find('#ok').parent().prev().removeAttr('placeholder');
 		$(this).find('#ok').replaceWith('<div class="btn btn-default del" type="button"><span class="glyphicon glyphicon-trash" aria-lsbrl="delete"></span></div>');
 		var that = this;
 		i++;
-		$.post("/editpoll/api",{id:id, name:name, value:req},function(data, status){
-			$(that).find('input[name^="choice"]').attr('name',data.choices[data.choices.length-1]._id)
+		$.post("/editpoll/api", {
+			id: id,
+			name: name,
+			value: req
+		}, function(data, status) {
+			$(that).find('input[name^="choice"]').attr('name', data.choices[data.choices.length - 1]._id)
 		});
 		return false;
 	});
@@ -40,13 +44,14 @@ $(document).ready(function() {
 	$(document).on('click', '.title', function() {
 		var req = $(this).parents('form').serializeArray();
 		var name = req.shift();
-		var id = $(this).parents('panel-collapse').attr('id');
+		var id = $(this).parents('.panel-collapse').attr('id');
+		console.log(id)
 		$.post("/editpoll/api", {
 			id: id,
 			name: name,
 			value: req
 		}, function(data, status) {
-			window.location.reload();
+			//window.location.reload();
 		});
 	})
 

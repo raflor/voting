@@ -59,14 +59,15 @@ function voteHandler() {
 
     //edit poll
     this.editPoll = function(req, res) {
-        if(!req.body.value){
+        if (!req.body.value) {
             res.status(400).end();
             return;
         }
         //find poll to edit
-        vote.findById((req.body.id), function(err, doc) {
+        vote.findOne(ObjectId(req.body.id), function(err, doc) {
             if (err) throw err;
-            // check if entries match with request
+            console.log(doc)
+                // check if entries match with request
             doc.choices.forEach(function(item) {
                 var curr = req.body.value.find(function(choice, index) {
                     if (choice.name == item._id) {
@@ -76,15 +77,16 @@ function voteHandler() {
                 });
                 // update matched entries
                 if (curr) {
-                    vote.update({
+                    console.log(curr)
+                    vote.findOneAndUpdate({
                         _id: ObjectId(req.body.id),
-                        choices: {
-                            _id: ObjectId(curr.name)
-                        }
+                        "choices._id": ObjectId(curr.name)
                     }, {
                         $set: {
                             "choices.$.choice": curr.value
                         }
+                    },function(err, result){
+                        if(err) throw err;
                     });
                 }
                 // delete other entries
@@ -103,17 +105,12 @@ function voteHandler() {
                     });
                 }
             });
-            doc.save(function(err) {
-                if (err) throw err;
-            });
 
             // change title
-            vote.update({
-                _id: ObjectId(req.body.id)
-            }, {
-                $set: {
-                    "name": req.body.name.value
-                }
+            doc.name = req.body.name.value;
+
+            doc.save(function(err) {
+                if (err) throw err;
             });
             res.json(doc);
         });
@@ -145,17 +142,17 @@ function voteHandler() {
             res.status(204).end();
         });
     };
-    
+
     this.getUser = function(req, res) {
-        if(req.user){
-            if(req.user.github){
+        if (req.user) {
+            if (req.user.github) {
                 res.json(req.user.github);
             }
-            else{
+            else {
                 res.json(req.user.google);
             }
         }
-        
+
     };
     //depreciated
     this.findVotes = function(user, callback) {

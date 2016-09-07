@@ -26,4 +26,4 @@ exports.db = db1;
 module.exports = {
     user_github:db1.model('user_github', User,'users'),
     user_google:db1.model('user_google',user_google,'users')
-}
+};
