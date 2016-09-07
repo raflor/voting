@@ -15,5 +15,15 @@ var User = new Schema({
       clicks: Number
    }
 });
+var user_google = new Schema({
+	google: {
+		id: String,
+		displayName: String,
+		username: String,
+	}
+});
 exports.db = db1;
-module.exports = db1.model('User', User);
+module.exports = {
+    user_github:db1.model('user_github', User,'users'),
+    user_google:db1.model('user_google',user_google,'users')
+}

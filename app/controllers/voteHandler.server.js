@@ -4,7 +4,7 @@ var vote = require('../models/vote.js');
 var db = vote.db;
 var votes = db.collection('votes');
 var ObjectId = require('mongoose').Types.ObjectId;
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 
 function voteHandler() {
 

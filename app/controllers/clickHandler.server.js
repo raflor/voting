@@ -1,9 +1,6 @@
 'use strict';
 
-var user = require('../models/users.js');
-var db = user.db;
-var users = db.collection('users');
-
+var user = require('../models/users.js').user_github;
 
 function ClickHandler () {
 

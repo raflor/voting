@@ -1,7 +1,7 @@
 'use strict';
 
 var GoogleStrategy = require('passport-google').Strategy;
-var User = require('../models/user_google');
+var User = require('../models/users').user_google;
 var configAuth = require('./auth');
 
 module.exports = function(passport) {

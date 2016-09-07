@@ -104,8 +104,8 @@ module.exports = function(app, passport) {
     //   request.  If authentication fails, the user will be redirected back to the
     //   login page.  Otherwise, the primary route function function will be called,
     //   which, in this example, will redirect the user to the home page.
-    app.get('/auth/google/callback',
-        passport.authenticate('google', {
+    app.route('/auth/google/callback')
+		.get(passport.authenticate('google', {
             failureRedirect: '/login'
         }),
         function(req, res) {
