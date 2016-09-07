@@ -1,11 +1,14 @@
 'use strict';
 
-var Users = require('../models/users.js');
+var user = require('../models/users.js');
+var db = user.db;
+var users = db.collection('users');
+
 
 function ClickHandler () {
 
 	this.getClicks = function (req, res) {
-		Users
+		user
 			.findOne({ 'github.id': req.user.github.id }, { '_id': false })
 			.exec(function (err, result) {
 				if (err) { throw err; }
@@ -15,7 +18,7 @@ function ClickHandler () {
 	};
 
 	this.addClick = function (req, res) {
-		Users
+		user
 			.findOneAndUpdate({ 'github.id': req.user.github.id }, { $inc: { 'nbrClicks.clicks': 1 } })
 			.exec(function (err, result) {
 					if (err) { throw err; }
@@ -26,7 +29,7 @@ function ClickHandler () {
 	};
 
 	this.resetClicks = function (req, res) {
-		Users
+		user
 			.findOneAndUpdate({ 'github.id': req.user.github.id }, { 'nbrClicks.clicks': 0 })
 			.exec(function (err, result) {
 					if (err) { throw err; }

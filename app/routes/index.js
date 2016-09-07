@@ -48,10 +48,13 @@ module.exports = function(app, passport) {
 		.get(passport.authenticate('github'));
 
 	app.route('/auth/github/callback')
-		.get(passport.authenticate('github'), function(req, res) {
-			res.redirect(req.session.returnTo || '/vote');
+		.get(passport.authenticate('github', {
+            failureRedirect: '/login'
+        }),
+        function(req, res) {
+            res.redirect(req.session.returnTo || '/vote');
 			delete req.session.returnTo;
-		});
+        });
 
 	app.route('/api/:id/clicks')
 		.get(isLoggedIn, clickHandler.getClicks)

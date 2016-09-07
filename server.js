@@ -14,7 +14,7 @@ require('./app/config/passport')(passport);
 require('./app/config/passport_google.js')(passport);
 
 mongoose.Promise = global.Promise;
-mongoose.createConnection(process.env.MONGO_URI,{ storage: { smallFiles: true } });
+//mongoose.connect(process.env.MONGO_URI,{ storage: { smallFiles: true } });
 
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));

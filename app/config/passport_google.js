@@ -23,9 +23,9 @@ module.exports = function(passport) {
 	//   credentials (in this case, an accessToken, refreshToken, and Google
 	//   profile), and invoke a callback with a user object.
 	passport.use(new GoogleStrategy({
-			clientID: "980646013282-mk5qk8l2kq7bpkt14f4s80g1gbodi1nt.apps.googleusercontent.com",
-			clientSecret: "YyjbFx_TyjTBMKE7xVfZjy0Z",
-			callbackURL: "http://voting-app-raflor.c9users.io/auth/google/callback"
+			clientID: process.env.GOOGLE_KEY,
+			clientSecret: process.env.GOOGLE_SECRET,
+			callbackURL: process.env.APP_URL+"auth/google/callback"
 		},
 		function(accessToken, refreshToken, profile, done) {
 			User.findOne({ 'google.id': profile.id }, function (err, user) {

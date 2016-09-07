@@ -1,6 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
+var db1 = mongoose.createConnection(process.env.MONGO_URI||"mongodb://localhost:27017/",{ storage: { smallFiles: true } });
 var Schema = mongoose.Schema;
 
 var User = new Schema({
@@ -14,5 +15,5 @@ var User = new Schema({
       clicks: Number
    }
 });
-
-module.exports = mongoose.model('User', User);
+exports.db = db1;
+module.exports = db1.model('User', User);

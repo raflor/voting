@@ -1,10 +1,8 @@
 'use strict';
 
 var vote = require('../models/vote.js');
-var user = require('../models/users.js');
 var db = vote.db;
 var votes = db.collection('votes');
-var users = user.db.collection('users');
 var ObjectId = require('mongoose').Types.ObjectId;
 var mongoose = require('mongoose');
 

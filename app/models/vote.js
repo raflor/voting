@@ -1,7 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var db = mongoose.createConnection(process.env.MONGO_URI||"mongodb://localhost:27017/votes",{ storage: { smallFiles: true } });
+var db2 = mongoose.createConnection(process.env.MONGO_URI||"mongodb://localhost:27017/votes",{ storage: { smallFiles: true } });
 var Schema = mongoose.Schema;
 
 var childSchema = new Schema({
@@ -14,6 +14,6 @@ var vote = new Schema({
 	user_id: String,
 	choices:[childSchema]
 });
-exports.db = db;
+exports.db = db2;
 //exports model
-module.exports = db.model('Vote', vote);
+module.exports = db2.model('Vote', vote);
